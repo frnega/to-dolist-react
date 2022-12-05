@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { FaPlusCircle } from "react-icons/fa"
 
+
 class InputTodo extends Component {
   state = {
     title: "",

@@ -1,16 +1,6 @@
-// import React from "react"
-
-// class TodoItem extends React.Component {
-//   render() {
-//     return <li>{this.props.todo.title}</li>
-//   }
-// }
-
-// export default TodoItem
-// 
-
 import React from "react"
 import styles from "./TodoItem.module.css"
+import { FaTrash } from "react-icons/fa"
 
 class TodoItem extends React.Component {
 
@@ -35,7 +25,7 @@ class TodoItem extends React.Component {
     componentWillUnmount() {
       console.log("Cleaning up...")
     }
-    
+
     render() {
 
         const {completed, id, title } = this.props.todo;
@@ -72,7 +62,7 @@ class TodoItem extends React.Component {
                 
 
                 <button onClick={ () => this.props.deleteTodoProps ( id ) } > 
-                    Delete
+                <FaTrash />
                 </button>
                     <span style ={ completed ? completedStyle : null } >
                         { title }
