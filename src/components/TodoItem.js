@@ -1,94 +1,86 @@
-import React from "react"
-import styles from "./TodoItem.module.css"
-import { FaTrash } from "react-icons/fa"
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/state-in-constructor */
+/* eslint-disable react/sort-comp */
+/* eslint-disable react/button-has-type */
+import React from 'react';
+import { FaTrash } from 'react-icons/fa';
+import styles from './TodoItem.module.css';
 
 class TodoItem extends React.Component {
-
-
     state = {
-        editing: false,
+      editing: false,
     }
 
-    handleEditing =  () => {
-        console.log ("Edit MODE Activated");
-        this.setState({
-            editing: true,
-        })
+    handleEditing = () => {
+      this.setState({
+        editing: true,
+      });
     }
 
-    handleUpdatedDone = event => {
-       if ( event.key === "Enter") {
-           this.setState ({ editing: false })
-       }
+    handleUpdatedDone = (event) => {
+      if (event.key === 'Enter') {
+        this.setState({ editing: false });
+      }
     }
- 
+
     componentWillUnmount() {
-      console.log("Cleaning up...")
+      // console.log('Cleaning up...');
     }
 
     render() {
+      const { completed, id, title } = this.props.todo;
 
-        const {completed, id, title } = this.props.todo;
+      const completedStyle = {
+        fontStyle: 'italic',
+        color: '#595959',
+        opacity: 0.4,
+        textDecoration: 'line-through',
+      };
 
-        const completedStyle = {
-            fontStyle: "italic",
-            color: "#595959",
-            opacity: 0.4,
-            textDecoration: "line-through",
-        }
+      const viewMode = {};
+      const editMode = {};
 
+      if (this.state.editing) {
+        viewMode.display = 'none';
+      } else {
+        editMode.display = 'none';
+      }
 
-        let viewMode ={}
-        let editMode = {}
+      return (
+        <li className={styles.item}>
 
-        if ( this.state.editing ){
-            viewMode.display = "none"
-        } else {
-            editMode.display = "none"
-        }
-        
+          <div onDoubleClick={this.handleEditing} style={viewMode}>
 
-        return (
-            <li className={ styles.item } > 
+            <input
+              type="checkbox"
+              className={styles.checkbox}
+              checked={completed}
+              onChange={() => this.props.handleChangeProps(id)}
+            />
 
-                <div onDoubleClick = { this.handleEditing }  style ={ viewMode }> 
+            <button onClick={() => this.props.deleteTodoProps(id)}>
+              <FaTrash />
+            </button>
+            <span style={completed ? completedStyle : null}>
+              { title }
+            </span>
 
-                    <input type="checkbox" 
-                        className={ styles.checkbox }
-                        checked={ completed }
-                        onChange ={ () => this.props.handleChangeProps( id ) }
-                    />
+          </div>
+          <input
+            type="text"
+            style={editMode}
+            className={styles.textInput}
+            value={title}
+            onChange={(e) => {
+              this.props.setUpdate(e.target.value, id);
+            }}
+            onKeyDown={this.handleUpdatedDone}
+          />
+        </li>
 
-                
-
-                <button onClick={ () => this.props.deleteTodoProps ( id ) } > 
-                <FaTrash />
-                </button>
-                    <span style ={ completed ? completedStyle : null } >
-                        { title }
-                    </span>
-                
-                </div> 
-                <input 
-                    type="text" 
-                    style= { editMode } 
-                    className={ styles.textInput} 
-                    value={ title }
-                    onChange={ e => {
-                        this.props.setUpdate ( e.target.value, id )
-                        }
-                    }
-                    onKeyDown= { this.handleUpdatedDone }
-                />
-            </li>
-        
-        )
-
+      );
     }
+}
 
-    
-
-
-} 
-
-export default TodoItem
+export default TodoItem;
