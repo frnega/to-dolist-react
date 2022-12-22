@@ -1,5 +1,4 @@
 <a name="readme-top"></a>
-
 <!--
 HOW TO USE:
 This is an example of how you may give instructions on setting up your project locally.
@@ -59,7 +58,7 @@ After you're finished please remove all the comments and instructions!
 
 # 📖 [TO-DO LIST] <a name="about-project"></a>
 
-"To-do list " It is a Single Page App (SPA) that allows users to:Make lists of tasks they want to edit helpes them edit and delete the tasks also.
+"To-do list " It is a Single Page App (SPA) that allows users to Make lists of tasks they want helpes them edit and delete the tasks also.
 
 **[TO-DO LIST]** is a...
 

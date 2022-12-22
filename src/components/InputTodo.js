@@ -1,26 +1,32 @@
-import React, { Component } from "react"
-import { FaPlusCircle } from "react-icons/fa"
-
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/state-in-constructor */
+/* eslint-disable no-alert */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/button-has-type */
+import React, { Component } from 'react';
+import { FaPlusCircle } from 'react-icons/fa';
 
 class InputTodo extends Component {
   state = {
-    title: "",
-  }
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    })
+    title: '',
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
+  onChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
     if (this.state.title.trim()) {
-      this.props.addTodoProps(this.state.title)
+      this.props.addTodoProps(this.state.title);
       this.setState({
-        title: "",
-      })
+        title: '',
+      });
     } else {
-      alert("Please write item")
+      alert('Please write item');
     }
   }
 
@@ -37,7 +43,7 @@ class InputTodo extends Component {
         />
         <button className="input-submit"><FaPlusCircle /></button>
       </form>
-    )
+    );
   }
 }
-export default InputTodo
+export default InputTodo;
